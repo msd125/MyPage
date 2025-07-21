@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحتي الشخصية | My Personal Page</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@700&display=swap');
+        body {
+            font-family: 'Cairo', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #064d23 0%, #fffbe6 100%);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .container {
+            background: rgba(255,255,255,0.97);
+            margin-top: 40px;
+            padding: 40px 28px 32px 28px;
+            border-radius: 32px;
+            box-shadow: 0 12px 40px rgba(6,77,35,0.18), 0 1.5px 0 #bfa14a;
+            max-width: 750px;
+            width: 98vw;
+            min-width: 0;
+            text-align: center;
+            position: relative;
+            animation: fadeInUp 1.2s cubic-bezier(.23,1.01,.32,1) both;
+            border: 3.5px solid #064d23;
+            transition: box-shadow 0.3s, border 0.3s;
+            box-sizing: border-box;
+        }
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(60px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .lang-switch {
+            margin-bottom: 24px;
+        }
+        .lang-switch button {
+            margin: 0 8px;
+            padding: 6px 18px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(90deg, #0a4d1a 0%, #bfa14a 100%);
+            color: #fff;
+            font-size: 1em;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(10,77,26,0.08);
+            transition: background 0.2s, transform 0.2s;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+        .lang-switch button.active {
+            background: linear-gradient(90deg, #bfa14a 0%, #0a4d1a 100%);
+            color: #fffbe6;
+            transform: scale(1.08);
+            border: 1.5px solid #bfa14a;
+        }
+        h1 {
+            margin: 0 0 8px 0;
+            font-size: 2.2em;
+            letter-spacing: 1px;
+            color: #0a4d1a;
+        }
+        h2 {
+            margin: 0 0 18px 0;
+            font-size: 1.2em;
+            color: #bfa14a;
+            font-weight: 700;
+        }
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 18px;
+            border: 5px solid #064d23;
+            box-shadow: 0 8px 32px rgba(6,77,35,0.18), 0 0 0 6px #fffbe6;
+            background: #fff;
+            animation: popIn 1.2s cubic-bezier(.23,1.01,.32,1) 0.2s both;
+            transition: box-shadow 0.3s, border 0.3s, transform 0.3s;
+            max-width: 100vw;
+        }
+        .profile-img:hover {
+            transform: scale(1.07) rotate(-2deg);
+            box-shadow: 0 16px 48px 0 #bfa14a99, 0 0 0 8px #fffbe6;
+            border-color: #bfa14a;
+        }
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.7); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        .info-block {
+            margin-bottom: 18px;
+            font-size: 1.1em;
+            color: #0a4d1a;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .section {
+            background: rgba(6,77,35,0.07);
+            border-radius: 26px;
+            margin: 32px 0 0 0;
+            padding: 32px 22px 22px 22px;
+            box-shadow: 0 8px 32px rgba(6,77,35,0.13), 0 0.5px 0 #bfa14a;
+            text-align: start;
+            position: relative;
+            animation: fadeInSection 1.2s cubic-bezier(.23,1.01,.32,1) both;
+            border-right: 7px solid #bfa14a;
+            transition: box-shadow 0.3s, border 0.3s, transform 0.3s, background 0.3s;
+        }
+        .section:not(:first-child)::before {
+            content: '';
+            display: block;
+            height: 32px;
+            margin-bottom: -32px;
+            background: linear-gradient(90deg, #bfa14a 0%, #fffbe6 100%);
+            border-radius: 12px;
+            opacity: 0.18;
+        }
+        .section:hover {
+            box-shadow: 0 20px 48px #bfa14a55, 0 0.5px 0 #bfa14a;
+            border-right: 10px solid #bfa14a;
+            background: linear-gradient(120deg, #fffbe6 60%, #bfa14a 100%);
+            transform: scale(1.025) rotate(-0.5deg);
+        }
+        @keyframes fadeInSection {
+            0% { opacity: 0; transform: translateY(60px) scale(0.97); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .section h3 {
+            display: flex;
+            align-items: center;
+            font-size: 1.35em;
+            color: #064d23;
+            margin-bottom: 18px;
+            gap: 16px;
+            text-shadow: 0 4px 16px #bfa14a33;
+            letter-spacing: 1px;
+        }
+        .section h3 .icon-3d {
+            width: 64px;
+            height: 64px;
+            margin-bottom: 0;
+            filter: drop-shadow(0 4px 16px #bfa14a99);
+            transition: transform 0.5s cubic-bezier(.23,1.01,.32,1), filter 0.3s;
+            will-change: transform;
+        }
+        .section h3 .icon-3d:hover {
+            transform: rotateY(18deg) scale(1.18);
+            filter: drop-shadow(0 8px 32px #bfa14aee);
+        }
+        .section ul {
+            padding-left: 28px;
+            margin: 0 0 0 0;
+            line-height: 2.1;
+        }
+        .section li {
+            margin-bottom: 14px;
+            font-size: 1.12em;
+            line-height: 2.1;
+            position: relative;
+        }
+        .section li::before {
+            content: '';
+            display: inline-block;
+            width: 13px;
+            height: 13px;
+            background: linear-gradient(135deg, #064d23 0%, #bfa14a 100%);
+            border-radius: 50%;
+            margin-inline-end: 14px;
+            vertical-align: middle;
+            box-shadow: 0 2px 8px #bfa14a33;
+        }
+        .infographic {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 24px 0 10px 0;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+        .infographic-block {
+            background: #fff;
+            border-radius: 20px;
+            box-shadow: 0 2px 12px rgba(6,77,35,0.10), 0 0.5px 0 #bfa14a;
+            padding: 20px 18px;
+            min-width: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s, box-shadow 0.3s, border 0.3s;
+            border: 2px solid #bfa14a;
+        }
+        .infographic-block:hover {
+            transform: translateY(-8px) scale(1.07) rotate(-1deg);
+            box-shadow: 0 16px 32px #bfa14a55, 0 0.5px 0 #bfa14a;
+            border: 2.5px solid #064d23;
+        }
+        .infographic-block span {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #0a4d1a;
+            margin-top: 8px;
+        }
+        .icon-3d {
+            width: 54px;
+            height: 54px;
+            margin-bottom: 4px;
+            filter: drop-shadow(0 2px 8px #bfa14a66);
+            transition: transform 0.3s, filter 0.3s;
+        }
+        .infographic-block:hover .icon-3d {
+            transform: scale(1.15) rotate(8deg);
+            filter: drop-shadow(0 4px 16px #064d2399);
+        }
+        @media (max-width: 1200px) {
+            .container { max-width: 98vw; }
+        }
+        @media (max-width: 900px) {
+            .container { padding: 24px 8px 18px 8px; }
+            h1 { font-size: 1.5em; }
+            h2 { font-size: 1em; }
+            .profile-img { width: 110px; height: 110px; }
+            .infographic-block { min-width: 90px; padding: 12px 6px; }
+        }
+        @media (max-width: 600px) {
+            .container { padding: 10px 2vw 10px 2vw; border-radius: 12px; }
+            h1 { font-size: 1.1em; }
+            h2 { font-size: 0.9em; }
+            .profile-img { width: 80px; height: 80px; }
+            .infographic { flex-direction: column; gap: 10px; }
+            .infographic-block { min-width: 70px; padding: 8px 2px; }
+            .section { padding: 10px 4px 6px 4px; border-radius: 8px; }
+            .section h3 { font-size: 1em; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="main-header">
+            <div class="header-bg"></div>
+            <div class="header-content">
+                <!-- تم حذف أيقونات الهيدر بناءً على طلبك -->
+                <img src="MsdPC.png" alt="Profile" class="profile-img">
+                <div class="header-texts">
+                    <h1 id="name">م. محمد سالم هادي الدوسري</h1>
+                    <h2 id="title">خبير Oracle وMicrosoft | مستشار أتمتة وذكاء اصطناعي | محلل بيانات وحلول رقمية</h2>
+                </div>
+                <div class="lang-switch">
+                    <button id="arBtn" class="active">العربية</button>
+                    <button id="enBtn">English</button>
+                </div>
+                <div class="info-block">
+                    <span id="email">msaldossary.sa@gmail.com</span> |
+                    <span id="phone">0555333748</span> |
+                    <span id="location">الرياض – المملكة العربية السعودية</span>
+                </div>
+            </div>
+        </header>
+        <div class="infographic">
+            <div class="infographic-block" title="سنوات الخبرة">
+                <lord-icon src="https://cdn.lordicon.com/etqbfrgp.json" trigger="loop" delay="1000" class="icon-3d"></lord-icon>
+                <span id="yearsExp">15+</span>
+                <div style="font-size:0.95em;color:#666;">سنة خبرة</div>
+            </div>
+            <div class="infographic-block" title="المشاريع">
+                <lord-icon src="https://cdn.lordicon.com/iltqorsz.json" trigger="loop" delay="1200" class="icon-3d"></lord-icon>
+                <span>50+</span>
+                <div style="font-size:0.95em;color:#666;">مشروع</div>
+            </div>
+            <div class="infographic-block" title="الدورات">
+                <lord-icon src="https://cdn.lordicon.com/ivayzoru.json" trigger="loop" delay="1400" class="icon-3d"></lord-icon>
+                <span>50+</span>
+                <div style="font-size:0.95em;color:#666;">دورة</div>
+            </div>
+        </div>
+        <style>
+        .main-header {
+            position: relative;
+            overflow: hidden;
+            border-radius: 32px 32px 0 0;
+            margin-bottom: 18px;
+            animation: fadeInHeader 1.2s cubic-bezier(.23,1.01,.32,1) both;
+        }
+        .header-bg {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(120deg, #064d23 60%, #bfa14a 100%);
+            opacity: 0.13;
+            z-index: 1;
+            pointer-events: none;
+        }
+        .header-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 32px 8px 12px 8px;
+        }
+        .header-icons {
+            display: flex;
+            gap: 18px;
+            margin-bottom: 8px;
+        }
+        .header-ic {
+            width: 48px;
+            height: 48px;
+            filter: drop-shadow(0 2px 8px #bfa14a66);
+            animation: float3d 2.5s infinite ease-in-out alternate;
+        }
+        .header-ic:nth-child(2) { animation-delay: 0.7s; }
+        .header-ic:nth-child(3) { animation-delay: 1.2s; }
+        @keyframes float3d {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-16px) scale(1.12) rotate(-6deg); }
+        }
+        @keyframes fadeInHeader {
+            0% { opacity: 0; transform: translateY(-40px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .header-texts {
+            margin-bottom: 8px;
+        }
+        .header-roles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin: 8px 0 0 0;
+        }
+        .role {
+            background: linear-gradient(90deg, #bfa14a 0%, #fffbe6 100%);
+            color: #064d23;
+            border-radius: 8px;
+            padding: 3px 12px;
+            font-size: 0.98em;
+            font-weight: bold;
+            box-shadow: 0 2px 8px #bfa14a22;
+            letter-spacing: 0.5px;
+            transition: background 0.2s, color 0.2s, transform 0.2s;
+        }
+        .role:hover {
+            background: linear-gradient(90deg, #064d23 0%, #bfa14a 100%);
+            color: #fffbe6;
+            transform: scale(1.08) rotate(-2deg);
+        }
+        @media (max-width: 900px) {
+            .main-header { border-radius: 18px 18px 0 0; }
+            .header-content { padding: 18px 2px 6px 2px; }
+            .header-ic { width: 32px; height: 32px; }
+        }
+        @media (max-width: 600px) {
+            .main-header { border-radius: 8px 8px 0 0; }
+            .header-content { padding: 8px 0 2px 0; }
+            .header-ic { width: 24px; height: 24px; }
+        }
+        </style>
+        <section class="section">
+            <h3 id="summary-title"><lord-icon src="https://cdn.lordicon.com/ajkxzzfb.json" trigger="hover" class="icon-3d"></lord-icon> <span>الملخص المهني</span></h3>
+            <p id="summary">خلال رحلتي المهنية في بناء الإدارات التقنية وتشكيل فرق العمل، نمت لديّ خبرة تراكمية تجاوزت 15 عامًا، سخّرتها في تنفيذ حلول تقنية فعالة ضمن بيئات حكومية وخاصة متنوعة. لا أقتصر على تنفيذ الأنظمة، بل أحرص على فهم السياق المؤسسي، وبناء أدوات رقمية تُحدث فرقًا فعليًا في الإنتاجية وجودة القرار. تخصصي في تطوير حلول Oracle ERP وOracle APEX، إلى جانب أدوات Microsoft الحديثة، منحني فهمًا عميقًا لجوهر الأعمال، بدءًا من تحليل النظم وقواعد البيانات، وانتهاءً بتحليل البيانات الاستراتيجي. أؤمن أن التقنية لا تنجح إلا إذا بُنيت بروح الفريق، وانطلقت من بيئة عمل محفّزة. ولهذا، أحرص على ترسيخ ثقافة التعاون، وتمكين الكفاءات، وتوظيف الذكاء الاصطناعي في أتمتة الإجراءات، لا لمجرد السرعة، بل لتيسير بيئة عمل أكثر سلاسة، تدعم الإنجاز وتفتح آفاقًا جديدة للابتكار المؤسسي.</p>
+        </section>
+        <section class="section">
+            <h3 id="exp-title"><lord-icon src="https://cdn.lordicon.com/ppyvfomi.json" trigger="hover" class="icon-3d"></lord-icon> <span>الخبرات العملية</span></h3>
+            <ul id="experience" style="margin-top:18px;">
+                <li><b>الإدارة العامة للتعليم بمنطقة الرياض</b> (2012 حتى الآن)<br>معلم تقنية رقمية للمرحلة الثانوية<br>مستشار تقني بإدارة الموارد البشرية تعليم الرياض (تكليف جزئي حالياً)<br>تطوير أنظمة الموارد البشرية باستخدام Oracle APEX وربطها بالشبكة الداخلية<br>تصميم لوحات متابعة الأداء باستخدام Power BI لمسارات التحول وإغلاق الإدارات<br>توثيق الأنظمة وتدريب المستخدمين<br>تطوير نظام "الملف المهني" وإدارته وتحديثه دوريًا</li>
+                <li><b>وزارة التعليم – وكالة الموارد البشرية</b> (سبتمبر 2023 – ديسمبر 2024)<br>تحليل بيانات تحسين مستويات 17,700 معلمة باستخدام Power BI<br>عضو لجنة تطوير بوابة "قادة المستقبل"<br>المشاركة في تطوير البوابة الرسمية لوكالة الموارد البشرية</li>
+                <li><b>شركة مملكة التقسيط</b> (2006 – 2011)<br>مدير تقنية المعلومات واستشاري تطبيقات Oracle ERP<br>تأسيس إدارة تقنية المعلومات والبنية التحتية الرقمية<br>تنفيذ مشاريع الشبكات وخدمات الاتصال وأمن المعلومات<br>تطوير الأنظمة المالية وتكاملها باستخدام Oracle ERP</li>
+                <li><b>شركة إعمار البيادر</b> (2004 – 2006)<br>قائد مشاريع تقنية – مبرمج Oracle ERP<br>تنفيذ مشاريع ERP لصالح دار الأركان ومملكة التقسيط<br>قيادة تطوير الأنظمة بمؤسسة البريد السعودي، وزارة الاتصالات، وهيئة الاتصالات، ووزارة الإسكان</li>
+            </ul>
+        </section>
+        <section class="section">
+            <h3 id="edu-title"><lord-icon src="https://cdn.lordicon.com/zyzoecaw.json" trigger="hover" class="icon-3d"></lord-icon> <span>المؤهلات العلمية</span></h3>
+            <ul id="education">
+                <li>بكالوريوس تقنية معلومات وحاسب آلي</li>
+            </ul>
+        </section>
+        <section class="section">
+            <h3 id="lang-title"><lord-icon src="https://cdn.lordicon.com/ssvybplt.json" trigger="hover" class="icon-3d"></lord-icon> <span>اللغات</span></h3>
+            <ul id="languages">
+                <li>العربية (اللغة الأم)</li>
+                <li>الإنجليزية (ممتاز)</li>
+            </ul>
+        </section>
+        <section class="section">
+            <h3 id="skills-title"><lord-icon src="https://cdn.lordicon.com/akuwjdzh.json" trigger="hover" class="icon-3d"></lord-icon> <span>المهارات التقنية</span></h3>
+            <ul id="skills">
+                <li>Oracle ERP</li>
+                <li>Oracle APEX</li>
+                <li>Power BI</li>
+                <li>قواعد البيانات</li>
+                <li>n8n وأتمتة سير العمل</li>
+                <li>الذكاء الاصطناعي</li>
+                <li>إدارة المشاريع التقنية</li>
+                <li>تكامل الأنظمة الرقمية</li>
+                <li>أمن المعلومات</li>
+                <li>القيادة وبناء فرق العمل</li>
+            </ul>
+        </section>
+        <section class="section">
+            <h3 id="ach-title"><lord-icon src="https://cdn.lordicon.com/uqpazftn.json" trigger="hover" class="icon-3d"></lord-icon> <span>الإنجازات الرئيسية</span></h3>
+            <ul id="achievements">
+                <li>ترقية نظام الموارد البشرية من Oracle Forms إلى Oracle APEX الحديث</li>
+                <li>توحيد قاعدة بيانات الموظفين وتحسين كفاءة العمليات الإدارية</li>
+                <li>تطوير وإدارة نظام "الملف المهني" وتحسينه بشكل مستمر</li>
+                <li>تصميم لوحات مؤشرات الأداء لمتابعة مسارات التحول والإغلاق</li>
+                <li>بناء أنظمة ذكية لدعم قرارات تحسين مستويات الموظفين في وزارة التعليم</li>
+            </ul>
+        </section>
+        <section class="section">
+            <h3 id="courses-title"><lord-icon src="https://cdn.lordicon.com/egmlnyku.json" trigger="hover" class="icon-3d"></lord-icon> <span>الدورات التدريبية</span></h3>
+            <ul id="courses">
+                <li>تحليل البيانات باستخدام Power BI</li>
+                <li>بناء سير العمل باستخدام n8n</li>
+                <li>إدارة المشاريع الاحترافية</li>
+                <li>الأمن السيبراني والجرائم الرقمية</li>
+                <li>الذكاء الاصطناعي والتحول الرقمي</li>
+                <li>SQL وتحليل قواعد البيانات</li>
+                <li>أكثر من 50 دورة تخصصية</li>
+            </ul>
+        </section>
+        <section class="section">
+            <h3 id="awards-title"><lord-icon src="https://cdn.lordicon.com/xyboiuok.json" trigger="hover" class="icon-3d"></lord-icon> <span>الجوائز وشهادات التقدير</span></h3>
+            <ul id="awards">
+                <li>شهادة شكر من مؤسسة الأمير سلطان بن عبدالعزيز لتطوير نظام المراسلات</li>
+                <li>شهادة شكر من البريد السعودي لتطوير نظام التدريب الإداري</li>
+                <li>شهادة شكر من إدارة تعليم الرياض لتطوير نظام "المساند" باستخدام Oracle APEX</li>
+                <li>شهادة شكر من مدير عام التعليم للمشاركة في لجان التوظيف التعاقدي 1445هـ</li>
+                <li>رخصة مهنية تعليمية من هيئة تقويم التعليم والتدريب – تخصص حاسب آلي</li>
+            </ul>
+        </section>
+    </div>
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+    <script>
+        const arContent = {
+            name: "م. محمد سالم هادي الدوسري",
+            title: "خبير Oracle وMicrosoft | مستشار أتمتة وذكاء اصطناعي | محلل بيانات وحلول رقمية",
+            email: "msaldossary.sa@gmail.com",
+            phone: "0555333748",
+            location: "الرياض – المملكة العربية السعودية",
+            summary: `خلال رحلتي المهنية في بناء الإدارات التقنية وتشكيل فرق العمل، نمت لديّ خبرة تراكمية تجاوزت 15 عامًا، سخّرتها في تنفيذ حلول تقنية فعالة ضمن بيئات حكومية وخاصة متنوعة. لا أقتصر على تنفيذ الأنظمة، بل أحرص على فهم السياق المؤسسي، وبناء أدوات رقمية تُحدث فرقًا فعليًا في الإنتاجية وجودة القرار. تخصصي في تطوير حلول Oracle ERP وOracle APEX، إلى جانب أدوات Microsoft الحديثة، منحني فهمًا عميقًا لجوهر الأعمال، بدءًا من تحليل النظم وقواعد البيانات، وانتهاءً بتحليل البيانات الاستراتيجي. أؤمن أن التقنية لا تنجح إلا إذا بُنيت بروح الفريق، وانطلقت من بيئة عمل محفّزة. ولهذا، أحرص على ترسيخ ثقافة التعاون، وتمكين الكفاءات، وتوظيف الذكاء الاصطناعي في أتمتة الإجراءات، لا لمجرد السرعة، بل لتيسير بيئة عمل أكثر سلاسة، تدعم الإنجاز وتفتح آفاقًا جديدة للابتكار المؤسسي.`,
+            experience: [
+                `<b>الإدارة العامة للتعليم بمنطقة الرياض</b> (2012 حتى الآن)<br>معلم تقنية رقمية للمرحلة الثانوية<br>مستشار تقني بإدارة الموارد البشرية تعليم الرياض (تكليف جزئي حالياً)<br>تطوير أنظمة الموارد البشرية باستخدام Oracle APEX وربطها بالشبكة الداخلية<br>تصميم لوحات متابعة الأداء باستخدام Power BI لمسارات التحول وإغلاق الإدارات<br>توثيق الأنظمة وتدريب المستخدمين<br>تطوير نظام "الملف المهني" وإدارته وتحديثه دوريًا`,
+                `<b>وزارة التعليم – وكالة الموارد البشرية</b> (سبتمبر 2023 – ديسمبر 2024)<br>تحليل بيانات تحسين مستويات 17,700 معلمة باستخدام Power BI<br>عضو لجنة تطوير بوابة "قادة المستقبل"<br>المشاركة في تطوير البوابة الرسمية لوكالة الموارد البشرية`,
+                `<b>شركة مملكة التقسيط</b> (2006 – 2011)<br>مدير تقنية المعلومات واستشاري تطبيقات Oracle ERP<br>تأسيس إدارة تقنية المعلومات والبنية التحتية الرقمية<br>تنفيذ مشاريع الشبكات وخدمات الاتصال وأمن المعلومات<br>تطوير الأنظمة المالية وتكاملها باستخدام Oracle ERP`,
+                `<b>شركة إعمار البيادر</b> (2004 – 2006)<br>قائد مشاريع تقنية – مبرمج Oracle ERP<br>تنفيذ مشاريع ERP لصالح دار الأركان ومملكة التقسيط<br>قيادة تطوير الأنظمة بمؤسسة البريد السعودي، وزارة الاتصالات، وهيئة الاتصالات، ووزارة الإسكان`
+            ],
+            education: ["بكالوريوس تقنية معلومات وحاسب آلي"],
+            languages: ["العربية (اللغة الأم)", "الإنجليزية (ممتاز)"],
+            skills: ["Oracle ERP", "Oracle APEX", "Power BI", "قواعد البيانات", "n8n وأتمتة سير العمل", "الذكاء الاصطناعي", "إدارة المشاريع التقنية", "تكامل الأنظمة الرقمية", "أمن المعلومات", "القيادة وبناء فرق العمل"],
+            achievements: [
+                "ترقية نظام الموارد البشرية من Oracle Forms إلى Oracle APEX الحديث",
+                "توحيد قاعدة بيانات الموظفين وتحسين كفاءة العمليات الإدارية",
+                "تطوير وإدارة نظام 'الملف المهني' وتحسينه بشكل مستمر",
+                "تصميم لوحات مؤشرات الأداء لمتابعة مسارات التحول والإغلاق",
+                "بناء أنظمة ذكية لدعم قرارات تحسين مستويات الموظفين في وزارة التعليم"
+            ],
+            courses: [
+                "تحليل البيانات باستخدام Power BI",
+                "بناء سير العمل باستخدام n8n",
+                "إدارة المشاريع الاحترافية",
+                "الأمن السيبراني والجرائم الرقمية",
+                "الذكاء الاصطناعي والتحول الرقمي",
+                "SQL وتحليل قواعد البيانات",
+                "أكثر من 50 دورة تخصصية"
+            ],
+            awards: [
+                "شهادة شكر من مؤسسة الأمير سلطان بن عبدالعزيز لتطوير نظام المراسلات",
+                "شهادة شكر من البريد السعودي لتطوير نظام التدريب الإداري",
+                "شهادة شكر من إدارة تعليم الرياض لتطوير نظام 'المساند' باستخدام Oracle APEX",
+                "شهادة شكر من مدير عام التعليم للمشاركة في لجان التوظيف التعاقدي 1445هـ",
+                "رخصة مهنية تعليمية من هيئة تقويم التعليم والتدريب – تخصص حاسب آلي"
+            ]
+        };
+        const enContent = {
+            summaryTitle: "Professional Summary",
+            expTitle: "Work Experience",
+            eduTitle: "Educational Qualifications",
+            langTitle: "Languages",
+            skillsTitle: "Technical Skills",
+            achTitle: "Key Achievements",
+            coursesTitle: "Training Courses",
+            awardsTitle: "Awards and Certificates of Appreciation",
+            name: "Mohammed bin Salem Hadi Al-Dossary",
+            title: "Oracle & Microsoft Expert | Automation & AI Consultant | Data Analyst & Digital Solutions",
+            email: "msaldossary.sa@gmail.com",
+            phone: "0555333748",
+            location: "Riyadh – Kingdom of Saudi Arabia",
+            summary: `Throughout my professional journey in building IT departments and forming teams, I have accumulated over 15 years of experience, which I have utilized in implementing effective technical solutions within diverse governmental and private environments. I don't limit myself to implementing systems; I am keen on understanding the institutional context and building digital tools that make a real difference in productivity and decision quality. My specialization in developing Oracle ERP and Oracle APEX solutions, along with modern Microsoft tools, has given me a deep understanding of business fundamentals, from systems analysis and databases to strategic data analysis. I believe that technology only succeeds when built with team spirit and launched from a motivating work environment. Therefore, I am committed to establishing a culture of collaboration, empowering competencies, and employing artificial intelligence in process automation, not just for speed, but to facilitate a smoother work environment that supports achievement and opens new horizons for institutional innovation.`,
+            experience: [
+                `<b>General Administration of Education in Riyadh</b> (2012 - Present)<br>Digital Technology Teacher for Secondary School<br>Technical Consultant at the Human Resources Department (currently part-time assignment)<br>Development of HR systems using Oracle APEX and integration with the internal network<br>Design of performance monitoring dashboards using Power BI for transformation paths and department closures<br>Systems documentation and user training<br>Development, management, and regular updating of the "Professional File" system`,
+                `<b>Ministry of Education - Human Resources Agency</b> (September 2023 - December 2024)<br>Analysis of improvement level data for 17,700 teachers using Power BI<br>Member of the "Future Leaders" portal development committee<br>Participation in the development of the official portal for the Human Resources Agency`,
+                `<b>Kingdom Installment Company</b> (2006 - 2011)<br>IT Manager and Oracle ERP Applications Consultant<br>Establishment of IT department and digital infrastructure<br>Implementation of network projects, communication services, and information security<br>Development of financial systems and their integration using Oracle ERP`,
+                `<b>Emaar Al-Bayader Company</b> (2004 - 2006)<br>Technical Project Leader - Oracle ERP Programmer<br>Implementation of ERP projects for Dar Al-Arkan and Kingdom Installment<br>Leading system development for Saudi Post, Ministry of Communications, Communications Authority, and Ministry of Housing`
+            ],
+            education: ["Bachelor's Degree in Information Technology and Computer Science"],
+            languages: ["Arabic (Native)", "English (Excellent)"],
+            skills: ["Oracle ERP", "Oracle APEX", "Power BI", "Databases & Systems Analysis", "n8n & Workflow Automation", "AI & Automation", "Technical Project Management", "Digital Systems Integration", "Information Security", "Leadership & Team Building"],
+            achievements: [
+                "Upgrading the HR system from Oracle Forms to modern Oracle APEX",
+                "Unifying the employee database and improving administrative process efficiency",
+                "Development and management of the 'Professional File' system with continuous improvement",
+                "Designing performance indicator dashboards to monitor transformation paths and closures",
+                "Building intelligent systems to support employee level improvement decisions at the Ministry of Education"
+            ],
+            courses: [
+                "Data Analysis using Power BI",
+                "Building Workflows using n8n",
+                "Professional Project Management",
+                "Cybersecurity and Digital Crimes",
+                "AI and Digital Transformation",
+                "SQL and Database Analysis",
+                "Plus more than 50 specialized courses"
+            ],
+            awards: [
+                "Certificate of appreciation from Prince Sultan bin Abdulaziz Foundation for developing the correspondence system",
+                "Certificate of appreciation from Saudi Post for developing the administrative training system",
+                "Certificate of appreciation from Riyadh Education Department for developing the 'Al-Musanad' system using Oracle APEX",
+                "Certificate of appreciation from the Director General of Education for participation in the contractual employment committees 1445 AH",
+                "Professional teaching license from the Education and Training Evaluation Commission - Computer Science specialization"
+            ]
+        };
+        window.addEventListener('DOMContentLoaded', function() {
+            const arBtn = document.getElementById('arBtn');
+            const enBtn = document.getElementById('enBtn');
+            function setLang(lang) {
+                const content = lang === 'ar' ? arContent : enContent;
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                document.getElementById('name').textContent = content.name;
+                document.getElementById('title').textContent = content.title;
+                document.getElementById('email').textContent = content.email;
+                document.getElementById('phone').textContent = content.phone;
+                document.getElementById('location').textContent = content.location;
+                document.getElementById('summary').textContent = content.summary;
+                // section titles
+                document.getElementById('summary-title').querySelector('span').textContent = lang === 'ar' ? 'الملخص المهني' : content.summaryTitle;
+                document.getElementById('exp-title').querySelector('span').textContent = lang === 'ar' ? 'الخبرات العملية' : content.expTitle;
+                document.getElementById('edu-title').querySelector('span').textContent = lang === 'ar' ? 'المؤهلات العلمية' : content.eduTitle;
+                document.getElementById('lang-title').querySelector('span').textContent = lang === 'ar' ? 'اللغات' : content.langTitle;
+                document.getElementById('skills-title').querySelector('span').textContent = lang === 'ar' ? 'المهارات التقنية' : content.skillsTitle;
+                document.getElementById('ach-title').querySelector('span').textContent = lang === 'ar' ? 'الإنجازات الرئيسية' : content.achTitle;
+                document.getElementById('courses-title').querySelector('span').textContent = lang === 'ar' ? 'الدورات التدريبية' : content.coursesTitle;
+                document.getElementById('awards-title').querySelector('span').textContent = lang === 'ar' ? 'الجوائز وشهادات التقدير' : content.awardsTitle;
+                // experience
+                const expList = document.getElementById('experience');
+                if(expList) expList.innerHTML = content.experience.map(e => `<li>${e}</li>`).join('');
+                // education
+                const eduList = document.getElementById('education');
+                if(eduList) eduList.innerHTML = content.education.map(e => `<li>${e}</li>`).join('');
+                // languages
+                const langList = document.getElementById('languages');
+                if(langList) langList.innerHTML = content.languages.map(e => `<li>${e}</li>`).join('');
+                // skills
+                const skillsList = document.getElementById('skills');
+                if(skillsList) skillsList.innerHTML = content.skills.map(e => `<li>${e}</li>`).join('');
+                // achievements
+                const achList = document.getElementById('achievements');
+                if(achList) achList.innerHTML = content.achievements.map(e => `<li>${e}</li>`).join('');
+                // courses
+                const coursesList = document.getElementById('courses');
+                if(coursesList) coursesList.innerHTML = content.courses.map(e => `<li>${e}</li>`).join('');
+                // awards
+                const awardsList = document.getElementById('awards');
+                if(awardsList) awardsList.innerHTML = content.awards.map(e => `<li>${e}</li>`).join('');
+                // ضبط المحاذاة حسب اللغة
+                const dir = lang === 'ar' ? 'rtl' : 'ltr';
+                document.querySelectorAll('.section, .section h3, .section ul, .section li, #summary, .info-block').forEach(el => {
+                    el.style.textAlign = 'justify';
+                    el.style.direction = dir;
+                });
+                // الهيدر
+                document.getElementById('name').style.display = 'block';
+                // active button
+                if(arBtn && enBtn) {
+                    if(lang === 'ar') {
+                        arBtn.classList.add('active');
+                        enBtn.classList.remove('active');
+                    } else {
+                        enBtn.classList.add('active');
+                        arBtn.classList.remove('active');
+                    }
+                }
+            }
+            if(arBtn) arBtn.onclick = () => setLang('ar');
+            if(enBtn) enBtn.onclick = () => setLang('en');
+        });
+    </script>
+</body>
+</html>
